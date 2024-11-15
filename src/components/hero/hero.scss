@@ -1,0 +1,160 @@
+@import "../../global.scss";
+
+.intro {
+  display: flex;
+  width: 90%;
+  margin: 5px;
+  margin: auto;
+
+  @include mobile {
+    flex-direction: column;
+    align-items: center;
+  }
+}
+
+.left {
+  flex: 6;
+  // overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+
+  @include mobile {
+    width: 100%;
+    height: 50%;
+  }
+}
+
+.right {
+  flex: 6;
+  position: relative;
+
+  @include mobile {}
+}
+
+.img-container {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  width: 100%;
+  border-radius: 10%;
+  margin-left: auto;
+  padding: -10px;
+
+  @include mobile {
+    height: 60%;
+    margin: auto;
+  }
+}
+
+img {
+  width: 80%;
+  margin: auto;
+  z-index: 1;
+
+  @include mobile {
+    width: 40%;
+  }
+}
+
+.hero-text {
+  display: flex;
+  flex-direction: column;
+  width: 75%;
+  height: 100%;
+  padding-left: 20px;
+  justify-content: center;
+
+  @include mobile {
+    align-items: center;
+    margin: auto;
+    padding-left: 0;
+
+    h2 {
+      margin-top: 20px;
+    }
+  }
+
+  p {
+    margin-top: 30px;
+    font-size: 20px;
+
+    @include mobile {
+      text-align: justify;
+      text-justify: inter-word;
+    }
+  }
+}
+
+h1 {
+  font-size: 60px;
+  margin: 10px 0px;
+  font-weight: 700;
+
+  @include mobile {
+    font-size: 40px;
+  }
+}
+
+h2 {
+  font-size: 60px;
+  font-weight: 400;
+}
+
+h3 {
+  font-size: 30px;
+  font-weight: 600;
+  color: rgb(86, 118, 86);
+
+  @include mobile {
+    font-size: 20px;
+  }
+}
+
+.arrow-down {
+  color: rgb(4, 58, 4);
+  margin-top: 5rem;
+
+  @include mobile {
+    margin-top: 5rem;
+  }
+}
+
+span {
+  font-size: 40px;
+  color: rgb(4, 58, 4);
+}
+
+.ityped-cursor {
+  animation: cursorBlink 0.8s infinite;
+}
+
+@keyframes cursorBlink {
+  50% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}
+
+.background-img {
+  clip-path: polygon(0 0, 22% 0, 79% 100%, 0 100%);
+  background-color: rgb(4, 58, 4);
+
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  z-index: 0;
+
+  @include mobile {
+    height: 100%;
+  }
+}
+
+.thuan-profile {
+  border-radius: 100%;
+}

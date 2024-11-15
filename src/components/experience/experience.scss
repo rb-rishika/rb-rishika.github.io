@@ -1,0 +1,29 @@
+@import "../../global.scss";
+
+.experience {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+}
+
+.App {
+    font-family: sans-serif;
+    text-align: center;
+}
+
+.vertical-timeline::before {
+    /* this is the vertical line */
+
+    background: black !important;
+}
+
+.empty {
+    height: 600px;
+    border: 1px solid red;
+}
+
+.dates {
+    margin: 0 2em 0 3em;
+    color: rgb(86, 118, 86);
+}
