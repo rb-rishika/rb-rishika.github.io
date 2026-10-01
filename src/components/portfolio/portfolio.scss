@@ -1,0 +1,156 @@
+@import "../../global.scss";
+
+/*
+ * Editorial project grid. Deliberately static: no tilt, no growing cards, no
+ * colour flips. The only hover feedback is a hairline border darkening and the
+ * image easing in, which reads as "interactive" without being theatrical.
+ */
+.portfolio {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  background-color: $paper;
+  color: $ink;
+  padding: 5rem 2rem;
+
+  @include mobile {
+    padding: 3.5rem 1.25rem;
+  }
+}
+
+.portfolio__head {
+  width: 100%;
+  max-width: 1160px;
+  margin: 0 auto 3rem;
+  text-align: center;
+
+  @include mobile {
+    margin-bottom: 2rem;
+  }
+}
+
+.portfolio__title {
+  font-family: $display;
+  font-size: clamp(2rem, 4vw, 3.25rem);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  line-height: 1.1;
+  margin: 0;
+  color: $ink;
+}
+
+.portfolio__dot {
+  color: $gold;
+}
+
+.portfolio__grid {
+  list-style: none;
+  margin: 0 auto;
+  padding: 0;
+  width: 100%;
+  max-width: 1160px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 2rem;
+
+  @include mobile {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+}
+
+.project {
+  display: flex;
+  flex-direction: column;
+  background-color: #fff;
+  border: 1px solid $border;
+  border-radius: 14px;
+  overflow: hidden;
+  /* Border + shadow only. Geometry never changes, so nothing reflows on hover. */
+  transition: border-color 0.25s ease, box-shadow 0.25s ease;
+
+  &:hover,
+  &:focus-within {
+    border-color: darken($border, 12%);
+    box-shadow: 0 10px 30px rgba($ink, 0.07);
+  }
+}
+
+.project__media {
+  aspect-ratio: 16 / 10;
+  background-color: $green-light;
+  overflow: hidden;
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+}
+
+.project__body {
+  display: flex;
+  flex-direction: column;
+  gap: 1.125rem;
+  padding: 1.5rem;
+  flex: 1;
+}
+
+.project__title {
+  font-family: $display;
+  font-size: 1.125rem;
+  font-weight: 600;
+  line-height: 1.35;
+  letter-spacing: -0.01em;
+  color: $ink;
+  margin: 0;
+}
+
+.project__links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.625rem;
+  margin-top: auto;
+}
+
+.project__link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-family: $body;
+  font-size: 0.875rem;
+  font-weight: 500;
+  line-height: 1;
+  padding: 0.625rem 1rem;
+  border-radius: 999px;
+  border: 1px solid $border;
+  background-color: transparent;
+  color: $ink;
+  text-decoration: none;
+  transition: background-color 0.2s ease, border-color 0.2s ease,
+    color 0.2s ease;
+
+  &:hover,
+  &:focus-visible {
+    background-color: $green-light;
+    border-color: $green;
+  }
+
+  &--primary {
+    background-color: $green;
+    border-color: $green;
+    color: $paper;
+
+    &:hover,
+    &:focus-visible {
+      background-color: $green-dark;
+      border-color: $green-dark;
+      color: $paper;
+    }
+  }
+}
+
+.project__icon {
+  font-size: 0.8125rem;
+}

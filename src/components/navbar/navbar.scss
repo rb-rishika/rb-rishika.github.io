@@ -1,0 +1,154 @@
+@import "../../global.scss";
+
+.navbar {
+  width: 100%;
+  height: 70px;
+  position: fixed;
+  top: 0;
+  z-index: 3;
+  background: $paper;
+  transition: background 0.4s ease, color 0.4s ease;
+}
+
+.wrapper {
+  max-width: 1660px;
+  margin: auto;
+  padding: 22.5px clamp(24px, 4.5vw, 74px);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+/* Wordmark: RB with a gold accent dot. */
+.logo {
+  font-family: $display;
+  font-weight: 800;
+  font-size: 30px;
+  line-height: 1;
+  letter-spacing: -0.12em;
+  color: $ink;
+  text-decoration: none;
+  white-space: nowrap;
+
+  span {
+    color: $green;
+  }
+
+  i {
+    color: $gold;
+    font-style: normal;
+    padding-left: 4px;
+  }
+}
+
+.left-nav {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.hamburger-container {
+  width: 32px;
+  height: 25px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  cursor: pointer;
+}
+
+.line {
+  width: 100%;
+  height: 3px;
+  background-color: $mainColor;
+  transform-origin: left;
+  transition: all 1s ease;
+}
+
+.active {
+  background-color: $mainColor;
+  color: white;
+
+  .hamburger-container {
+    span {
+      &:first-child {
+        background-color: white;
+        transform: rotate(45deg);
+      }
+
+      &:nth-child(2) {
+        opacity: 0;
+      }
+
+      &:last-child {
+        background-color: white;
+        transform: rotate(-45deg);
+      }
+    }
+  }
+}
+
+.icon {
+  font-size: 22px;
+  color: $ink;
+  transition: color 0.2s ease;
+
+  &:hover {
+    color: $green;
+  }
+}
+
+.mr10 {
+  margin-right: 14px;
+}
+
+.center-nav {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: auto;
+  padding: 0px 0px;
+  cursor: pointer;
+  list-style: none;
+  font-size: 16px;
+  font-weight: 500;
+  letter-spacing: 0;
+  gap: clamp(20px, 2.6vw, 44px);
+
+  a {
+    text-decoration: none;
+    color: inherit;
+    font-size: inherit;
+
+    &:hover {
+      border-bottom: 3px solid $mainColor;
+    }
+  }
+
+  .mr {
+    margin-right: 40px;
+  }
+
+  @include mobile {
+    display: none;
+  }
+}
+
+.left-nav {
+  display: none;
+
+  @include mobile {
+    display: contents;
+  }
+}
+
+.right-nav {
+  a {
+    text-decoration: none;
+    color: inherit;
+    font-size: inherit;
+  }
+}
+
+.download-icon {
+  color: #000000
+}

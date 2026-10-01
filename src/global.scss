@@ -1,0 +1,30 @@
+/* ---- Design tokens ---- */
+$paper: #faf8f1;
+$ink: #20232b;
+$muted: #626365;
+$green: #365c44;
+$green-dark: #244734;
+$green-light: #e9efdf;
+$gold: #e8ac25;
+$border: #dce3d7;
+
+/* Legacy aliases so existing sections keep compiling. */
+$mainColor: $green;
+$secondColor: $gold;
+
+$display: "Manrope", sans-serif;
+$body: "DM Sans", sans-serif;
+
+$width: 768px;
+
+@mixin mobile {
+  @media (max-width: #{$width}) {
+    @content;
+  }
+}
+
+@mixin tablet {
+  @media (max-width: 1100px) {
+    @content;
+  }
+}

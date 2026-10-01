@@ -1,0 +1,133 @@
+@import "../../global.scss";
+
+/* ---------- 3D tilt card ---------- */
+.tilt {
+  position: relative;
+  transform-style: preserve-3d;
+  transition: transform 260ms cubic-bezier(0.22, 1, 0.36, 1),
+    box-shadow 260ms ease;
+  will-change: transform;
+}
+
+.tilt.is-active {
+  transition: transform 90ms ease-out, box-shadow 260ms ease;
+  box-shadow: 0 30px 60px -20px rgba(0, 0, 0, 0.45);
+  z-index: 3;
+}
+
+.tilt__content {
+  transform-style: preserve-3d;
+  height: 100%;
+}
+
+.tilt__glare {
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  pointer-events: none;
+  transition: opacity 260ms ease;
+  mix-blend-mode: overlay;
+}
+
+/* ---------- scroll-linked parallax between sections ---------- */
+
+/*
+ * The wrapper owns the one-shot reveal; the inner layer owns the continuous
+ * scroll-linked motion. Splitting them keeps the two transforms independent
+ * instead of overwriting each other.
+ */
+.parallax-section {
+  opacity: 0;
+  transition: opacity 700ms ease;
+  will-change: opacity;
+}
+
+.parallax-section.is-visible {
+  opacity: 1;
+}
+
+.parallax-section__layer {
+  /*
+   * --parallax is written by useParallax: -1 when the section sits above the
+   * viewport centre, 0 at centre, +1 below.
+   *
+   * Note this element is NOT transformed itself. Each section is an opaque,
+   * full-viewport block, so shifting the whole thing is invisible -- there's
+   * no fixed reference to read the movement against. Instead the value is
+   * inherited by the descendants below, which move at different rates so the
+   * heading and the content visibly separate as you scroll.
+   */
+  --parallax: 0;
+  --parallax-abs: 0;
+}
+
+/*
+ * Section headings drift further and faster than the body content; the
+ * difference between the two rates is what reads as depth within a panel,
+ * on top of the stacked-reveal motion between panels.
+ */
+.parallax-section__layer {
+  .portfolio__head,
+  .references__head,
+  .experience__head,
+  .contact__head {
+    transform: translate3d(0, calc(var(--parallax) * -90px), 0);
+    will-change: transform;
+  }
+
+  .portfolio__grid,
+  .references__grid,
+  .timeline,
+  .contact__inner {
+    transform: translate3d(0, calc(var(--parallax) * -30px), 0);
+    will-change: transform;
+  }
+}
+
+/* ---------- scroll reveal in 3D ---------- */
+.reveal-3d,
+.section-3d {
+  transform-style: preserve-3d;
+  opacity: 0;
+  transform: perspective(1200px) translate3d(0, 60px, -250px) rotateX(10deg);
+  transition: opacity 800ms ease, transform 900ms cubic-bezier(0.22, 1, 0.36, 1);
+  will-change: transform, opacity;
+}
+
+.reveal-3d.is-visible,
+.section-3d.is-visible {
+  opacity: 1;
+  transform: perspective(1200px) translate3d(0, 0, 0) rotateX(0deg);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .tilt {
+    transition: none !important;
+    transform: none !important;
+  }
+
+  .parallax-section {
+    opacity: 1;
+    transition: none;
+  }
+
+  .parallax-section__layer {
+    .portfolio__head,
+    .references__head,
+    .experience__head,
+    .contact__head,
+    .portfolio__grid,
+    .references__grid,
+    .timeline,
+    .contact__inner {
+      transform: none;
+    }
+  }
+
+  .reveal-3d,
+  .section-3d {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+}

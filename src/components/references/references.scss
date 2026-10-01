@@ -1,0 +1,144 @@
+@import "../../global.scss";
+
+/*
+ * Matches the portfolio section: same palette, same centered heading with the
+ * gold dot, same static card treatment. No tilt, no geometry changes on hover.
+ */
+.references {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  background-color: $paper;
+  color: $ink;
+  padding: 5rem 2rem;
+
+  @include mobile {
+    padding: 3.5rem 1.25rem;
+  }
+}
+
+.references__head {
+  width: 100%;
+  max-width: 1160px;
+  margin: 0 auto 3rem;
+  text-align: center;
+
+  @include mobile {
+    margin-bottom: 2rem;
+  }
+}
+
+.references__title {
+  font-family: $display;
+  font-size: clamp(2rem, 4vw, 3.25rem);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  line-height: 1.1;
+  margin: 0;
+  color: $ink;
+}
+
+.references__dot {
+  color: $gold;
+}
+
+.references__grid {
+  list-style: none;
+  margin: 0 auto;
+  padding: 0;
+  width: 100%;
+  max-width: 1160px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+  align-items: stretch;
+
+  @include mobile {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+}
+
+.quote {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  background-color: #fff;
+  border: 1px solid $border;
+  border-radius: 14px;
+  padding: 2rem;
+  transition: border-color 0.25s ease, box-shadow 0.25s ease;
+
+  &:hover {
+    border-color: darken($border, 12%);
+    box-shadow: 0 10px 30px rgba($ink, 0.07);
+  }
+
+  @include mobile {
+    padding: 1.5rem;
+  }
+}
+
+.quote__body {
+  margin: 0;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+/* Typographic quote mark, sized as a graphic element rather than an icon. */
+.quote__mark {
+  font-family: $display;
+  font-size: 3.5rem;
+  font-weight: 700;
+  line-height: 0.6;
+  color: $green-light;
+  user-select: none;
+}
+
+.quote__text {
+  font-family: $body;
+  font-size: 0.9375rem;
+  line-height: 1.7;
+  color: $muted;
+  margin: 0;
+}
+
+.quote__author {
+  display: flex;
+  align-items: center;
+  gap: 0.875rem;
+  padding-top: 1.25rem;
+  border-top: 1px solid $border;
+}
+
+.quote__avatar {
+  height: 44px;
+  width: 44px;
+  flex-shrink: 0;
+  border-radius: 50%;
+  object-fit: cover;
+  background-color: $green-light;
+}
+
+.quote__meta {
+  display: flex;
+  flex-direction: column;
+  gap: 0.125rem;
+  min-width: 0;
+}
+
+.quote__name {
+  font-family: $display;
+  font-size: 0.9375rem;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  color: $ink;
+}
+
+.quote__role {
+  font-family: $body;
+  font-size: 0.8125rem;
+  color: $muted;
+}

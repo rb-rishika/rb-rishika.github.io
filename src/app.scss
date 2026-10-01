@@ -1,0 +1,92 @@
+@import "./global.scss";
+
+.app {
+  height: 100vh;
+  background-color: $paper;
+  color: $ink;
+  scrollbar-width: none;
+  // &::webkit-scrollbar {
+  //   display: none;
+  // }
+}
+
+.sections {
+  width: 100%;
+  height: calc(100vh - 70px);
+  position: relative;
+  top: 70px;
+  overflow-y: auto;
+  /*
+   * No scroll snapping. Snapping forces the scroller to rest only at section
+   * boundaries, which skips the in-between positions that any scroll-linked
+   * effect depends on.
+   */
+  scroll-behavior: smooth;
+
+  > * {
+    width: 100%;
+    min-height: calc(100vh - 70px);
+  }
+
+  /*
+   * The hero fills the viewport so its video background reads full-bleed.
+   *
+   * It's rendered outside ParallaxSection (translating it would drag the
+   * fixed video background), so it needs to join the sticky stack manually.
+   * z-index 0 puts it at the bottom of the ladder, letting Portfolio be the
+   * first panel to scroll up and over it.
+   */
+  > .hero {
+    /*
+     * Must fill the scroller exactly. The previous `min(820px, ...)` cap meant
+     * that on any viewport taller than 820px the hero stopped short and the
+     * next panel peeked in below it.
+     */
+    min-height: calc(100vh - 70px);
+    position: sticky;
+    top: 0;
+    z-index: 0;
+  }
+
+  /* Wrappers are pass-through: the real section inside must still fill. */
+  > .parallax-section,
+  > .parallax-section > .parallax-section__layer,
+  > .parallax-section > .parallax-section__layer > * {
+    width: 100%;
+    min-height: calc(100vh - 70px);
+  }
+
+  /*
+   * Stacked-reveal parallax.
+   *
+   * Each section is pinned with `sticky` so it stays put while the next one
+   * scrolls up and over it. Because every section is opaque, the incoming
+   * panel covers the outgoing one -- two layers moving at different speeds,
+   * which is what actually reads as parallax between sections.
+   *
+   * The z-index ladder is essential: without it later siblings paint beneath
+   * their predecessors and nothing would ever cover anything.
+   */
+  > .parallax-section {
+    position: sticky;
+    top: 0;
+  }
+
+  > .parallax-section:nth-of-type(1) { z-index: 1; }
+  > .parallax-section:nth-of-type(2) { z-index: 2; }
+  > .parallax-section:nth-of-type(3) { z-index: 3; }
+  > .parallax-section:nth-of-type(4) { z-index: 4; }
+
+  /* The pinned panel needs a solid fill, or the section beneath shows through. */
+  > .parallax-section > .parallax-section__layer > * {
+    background-color: $paper;
+  }
+}
+
+body {
+  scrollbar-width: none;
+}
+
+body::-webkit-scrollbar {
+  display: none;
+}
