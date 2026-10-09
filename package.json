@@ -2,7 +2,7 @@
   "name": "portfolio-app",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://rb-rishika.github.io/portfolio",
+  "homepage": "https://rb-rishika.github.io/",
   "dependencies": {
     "@emailjs/browser": "^3.4.0",
     "@emotion/react": "^11.7.1",
